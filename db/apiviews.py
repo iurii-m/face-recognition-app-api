@@ -1,3 +1,5 @@
+import json
+
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
@@ -21,15 +23,21 @@ class CreatePerson(APIView):
     serializer_class = PersonSerializer
 
     def post(self, request):
-        name = request.data.get("name")
-        print("NAME:", name)
-        embeddings = request.data.get("embeddings")
-        print("EMBEDDINGS:", embeddings)
-        # data = {'name': name, 'embeddings': embeddings}
-        data = {'name': name}
-        serializer = PersonSerializer(data=data)
-        if serializer.is_valid():
-            person = serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        json_data = json.loads(request.body)  # request.raw_post_data w/ Django < 1.4
+        try:
+            name = json_data['name']
+            embeddings = json_data["embeddings"]
+
+            print("NAME:", name)
+            print("EMBEDDINGS:", embeddings)
+
+            # data = {'name': name, 'embeddings': embeddings}
+            data = {'name': name}
+            serializer = PersonSerializer(data=data)
+            if serializer.is_valid():
+                person = serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except KeyError:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
