@@ -25,7 +25,7 @@ SECRET_KEY = 'b^v5mki0z#2+8hhw$=1x50k_))3$sl7*ryj0@@xl9^5+--#28a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'face-recognition-app-api.herokuapp.com']
 
 
 # Application definition
