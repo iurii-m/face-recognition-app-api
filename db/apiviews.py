@@ -22,6 +22,7 @@ class CreatePerson(APIView):
 
     def post(self, request):
         name = request.data.get("name")
+        print("NAME:", name)
         # embeddings = request.data.get("embeddings")
         # data = {'name': name, 'embeddings': embeddings}
         data = {'name': name}
