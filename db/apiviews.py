@@ -29,6 +29,7 @@ class CreatePerson(APIView):
             embeddings = json_data["embeddings"]
 
             data = {'name': name, 'embeddings': embeddings}
+            print("DATA_", data)
             serializer = PersonSerializer(data=json_data)
             if serializer.is_valid():
                 person = serializer.save()
