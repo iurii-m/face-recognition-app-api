@@ -23,6 +23,7 @@ class CreatePerson(APIView):
     serializer_class = PersonSerializer
 
     def post(self, request):
+        print("BODY:", request.body)
         json_data = json.loads(request.body)  # request.raw_post_data w/ Django < 1.4
         try:
             name = json_data['name']
