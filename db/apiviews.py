@@ -23,7 +23,8 @@ class CreatePerson(APIView):
     def post(self, request):
         name = request.data.get("name")
         print("NAME:", name)
-        # embeddings = request.data.get("embeddings")
+        embeddings = request.data.get("embeddings")
+        print("EMBEDDINGS:", embeddings)
         # data = {'name': name, 'embeddings': embeddings}
         data = {'name': name}
         serializer = PersonSerializer(data=data)
