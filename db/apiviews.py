@@ -30,7 +30,7 @@ class CreatePerson(APIView):
 
             p = Person()
             p.name = name
-            p.embeddings = embeddings
+            # p.embeddings = embeddings
 
             result = p.save()
         except KeyError:
