@@ -31,8 +31,7 @@ class CreatePerson(APIView):
             print("NAME:", name)
             print("EMBEDDINGS:", embeddings)
 
-            # data = {'name': name, 'embeddings': embeddings}
-            data = {'name': name}
+            data = {'name': name, 'embeddings': embeddings}
             serializer = PersonSerializer(data=data)
             if serializer.is_valid():
                 person = serializer.save()
