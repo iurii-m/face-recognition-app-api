@@ -28,13 +28,10 @@ class CreatePerson(APIView):
             name = json_data['name']
             embeddings = json_data["embeddings"]
 
-            data = {'name': name, 'embeddings': embeddings}
-            print("DATA_", data)
-            serializer = PersonSerializer(data=json_data)
-            if serializer.is_valid():
-                person = serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            p = Person()
+            p.name = name
+            p.embeddings = embeddings
+
+            result = p.save()
         except KeyError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
