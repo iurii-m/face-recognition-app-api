@@ -1,4 +1,5 @@
-from flask import json, Response, Blueprint
+from flask import json, Response, Blueprint, request
+
 from models.models import PersonSchema, PersonModel
 
 person_api = Blueprint('Person', __name__)
@@ -10,8 +11,9 @@ def add_person():
     return "Add endpoint"
 
 
-@person_api.route('/get/<list:embeddings>', methods=['GET'])
-def search_person(embeddings):
+@person_api.route('/get', methods=['GET'])
+def search_person():
+    embeddings = request.args.getlist('embeddings', type=float)
     return "Embeddings endpoint"
 
 
