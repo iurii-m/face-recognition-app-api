@@ -29,6 +29,8 @@ def create_app(env_name):
 
     application.config.from_object(app_config[env_name])
 
+    application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
     db.init_app(application)  # add this line
 
     # Register the blueprint
