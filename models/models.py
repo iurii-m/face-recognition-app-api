@@ -1,6 +1,6 @@
 from marshmallow import fields, Schema
 
-from app import db
+from . import db
 
 
 class PersonModel(db.Model):

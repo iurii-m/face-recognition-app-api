@@ -1,5 +1,5 @@
-from flask import request, json, Response, Blueprint
-from models import PersonSchema, PersonModel
+from flask import json, Response, Blueprint
+from models.models import PersonSchema, PersonModel
 
 person_api = Blueprint('Person', __name__)
 person_schema = PersonSchema()

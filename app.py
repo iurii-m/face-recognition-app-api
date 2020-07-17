@@ -1,11 +1,10 @@
-import os
-
 from flask import Flask
-from .models import db
-from .config import app_config
+
+from models import db
+from config import app_config
 
 # importa a blueprint
-from .views import person_api as person_blueprint
+from views.views import person_api as person_blueprint
 
 app = Flask(__name__)
 
