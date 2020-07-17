@@ -39,9 +39,9 @@ class PersonModel(db.Model):
         return PersonModel.query.get(id)
 
 
-class RelationsSchema(Schema):
+class PersonSchema(Schema):
     """
-    Blogpost Schema
+    Person Schema
     """
-    id_recipe = fields.Int(dump_only=True)
-    id_ingredient = fields.Int(dump_only=True)
+    name = fields.String(dump_only=True)
+    embeddings = fields.List(fields.Float())

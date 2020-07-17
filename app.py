@@ -1,11 +1,13 @@
 import os
 
-from flask_sqlalchemy import SQLAlchemy
-
 from flask import Flask
-app = Flask(__name__)
+from .models import db
+from .config import app_config
 
-db = SQLAlchemy()
+# importa a blueprint
+from .views import person_api as person_blueprint
+
+app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
@@ -16,21 +18,30 @@ def index():
     return 'Congratulations! Your first endpoint is workin'
 
 
-@app.route('/add', methods=['POST'])
-def hello():
-    return "Add endpoint"
+def create_app(env_name):
+    """
+    Create app
+    """
 
+    # app initiliazation
+    application = Flask(__name__)
 
-@app.route('/get/<string:embeddings>', methods=['GET'])
-def search_person(embeddings):
-    return "Embeddings endpoint"
+    # app.run(host='0.0.0.0',port=5000)
 
+    application.config.from_object(app_config[env_name])
 
-@app.route('/all', methods=['GET'])
-def hello():
-    return "Get all endpoint - Might be useless"
+    db.init_app(application)  # add this line
 
+    # Register the blueprint
+    # For example: http://127.0.0.1:5000/api/all/  --> All people
+    application.register_blueprint(person_blueprint, url_prefix='/api/')
 
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    @application.route('/', methods=['GET'])
+    def index():
+        """
+        example endpoint
+        """
+
+        return 'Congratulations! Your first endpoint is workin'
+
+    return application
