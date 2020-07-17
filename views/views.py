@@ -10,7 +10,7 @@ def add_person():
     return "Add endpoint"
 
 
-@person_api.route('/get/<array:embeddings>', methods=['GET'])
+@person_api.route('/get/<list:embeddings>', methods=['GET'])
 def search_person(embeddings):
     return "Embeddings endpoint"
 
