@@ -87,11 +87,11 @@ def main():
         names.append(file[:-4])
 
     try:
-        connection = psycopg2.connect(user="postgres",
-                                      password="root",
-                                      host="localhost",
+        connection = psycopg2.connect(user="bcjvkxzttihwua",
+                                      password="5ec611f4077ad84d4a4cfc63fcf84e7dfbcc2ed644ebea903f1d963edf89f469",
+                                      host="ec2-54-217-213-79.eu-west-1.compute.amazonaws.com",
                                       port="5432",
-                                      database="FaceRecognition")
+                                      database="d8pltdd2quqsdh")
 
         cursor = connection.cursor()
         for n, e in zip(names, embeddings):
