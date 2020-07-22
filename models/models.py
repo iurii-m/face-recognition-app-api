@@ -1,4 +1,5 @@
 from marshmallow import fields, Schema
+from sqlalchemy.dialects.postgresql import ARRAY
 
 from . import db
 
@@ -12,11 +13,11 @@ class PersonModel(db.Model):
 
     id_person = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
-    embeddings = db.Column(db.ARRAY(db.Float, dimensions=512), nullable=False)
+    embeddings = db.Column(ARRAY(db.Float, dimensions=1), nullable=False)
 
-    def __init__(self, data):
-        self.name = data.get('name')
-        self.embeddings = data.get('embeddings')
+    def __init__(self, name, embeddings):
+        self.name = name
+        self.embeddings = embeddings
 
     @staticmethod
     def get_all_person():
@@ -29,6 +30,9 @@ class PersonModel(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+    def __repr__(self):
+        return '<Person %r>' % self.name
 
     @staticmethod
     def get_user_by_name(name):
@@ -44,4 +48,4 @@ class PersonSchema(Schema):
     Person Schema
     """
     name = fields.String(dump_only=True)
-    embeddings = fields.List(fields.Float())
+    embeddings = fields.String(dump_only=True)
