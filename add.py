@@ -1,6 +1,5 @@
 import glob
 import os
-import cv2
 
 import psycopg2
 import torch
