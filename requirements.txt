@@ -11,9 +11,7 @@ Jinja2==2.11.2
 Mako==1.1.3
 MarkupSafe
 marshmallow
-mkl-fft
-mkl-random
-mkl-service
+mkl
 numpy==1.18.5
 olefile==0.46
 Pillow
