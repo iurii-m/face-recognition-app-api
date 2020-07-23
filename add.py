@@ -84,7 +84,7 @@ def main():
 
         embeddings.append(embedding)
         names.append(file[:-4])
-
+    """
     try:
         connection = psycopg2.connect(user="bcjvkxzttihwua",
                                       password="5ec611f4077ad84d4a4cfc63fcf84e7dfbcc2ed644ebea903f1d963edf89f469",
@@ -98,8 +98,6 @@ def main():
             record_to_insert = (n, e.tolist())
             cursor.execute(postgres_insert_query, record_to_insert)
 
-            # time.sleep(0.3)
-
         connection.commit()
 
     except (Exception, psycopg2.Error) as error:
@@ -110,6 +108,7 @@ def main():
             cursor.close()
             connection.close()
             print("PostgreSQL connection is closed")
+    """
 
 
 if __name__ == '__main__':
