@@ -29,13 +29,18 @@ def search_person():
 
     index = 0
     best_score = 0.0
+    found = False
     for i, p in enumerate(people):
         score = dot(embeddings, p.embeddings)/(norm(embeddings) * norm(p.embeddings))
         if score > best_score:
+            found = True
             index = i
             best_score = score
 
-    response = {"name": people[index].name, "score": best_score}
+    if found:
+        response = {"name": people[index].name, "score": best_score}
+    else:
+        response = {}
     return custom_response(response, 200)
 
 
