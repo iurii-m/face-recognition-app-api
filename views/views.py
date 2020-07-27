@@ -18,7 +18,7 @@ def add_person():
 
     print("Person added with the name:", name)
 
-    return custom_response({"name": name}, 202)
+    return custom_response({"name": name}, 200)
 
 
 @person_api.route('/search', methods=['POST'])
@@ -31,9 +31,9 @@ def search_person():
     best_score = 0.0
     found = False
     for i, p in enumerate(people):
+        found = True
         score = dot(embeddings, p.embeddings)/(norm(embeddings) * norm(p.embeddings))
         if score > best_score:
-            found = True
             index = i
             best_score = score
 
