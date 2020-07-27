@@ -16,7 +16,7 @@ def add_person():
     person = PersonModel(name, embeddings)
     person.save()
 
-    print("Person added with the name:", name)
+    print("Person added with the name:", name, "and embeddings:", embeddings)
 
     return custom_response({"name": name}, 200)
 
