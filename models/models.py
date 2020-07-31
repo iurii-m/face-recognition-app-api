@@ -23,12 +23,14 @@ class PersonModel(db.Model):
     def get_all_person():
         return PersonModel.query.all()
 
+    @staticmethod
+    def delete_all():
+        num_rows_deleted = db.session.query(PersonModel).delete()
+        db.session.commit()
+        return num_rows_deleted
+
     def save(self):
         db.session.add(self)
-        db.session.commit()
-
-    def delete(self):
-        db.session.delete(self)
         db.session.commit()
 
     def __repr__(self):

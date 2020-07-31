@@ -51,6 +51,12 @@ def get_all():
     return custom_response(all_people, 200)
 
 
+@person_api.route('/delete', methods=['GET'])
+def delete_all():
+    number = PersonModel.delete_all()
+    return custom_response(number, 200)
+
+
 def custom_response(res, status_code):
     """
     Custom Response Function
