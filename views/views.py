@@ -1,6 +1,7 @@
 from flask import json, Response, Blueprint, request
-from numpy import dot
-from numpy.linalg import norm
+# from numpy import dot
+# from numpy.linalg import norm
+import numpy as np
 
 from models.models import PersonSchema, PersonModel
 
@@ -32,7 +33,8 @@ def search_person():
     found = False
     for i, p in enumerate(people):
         found = True
-        score = dot(embeddings, p.embeddings)/(norm(embeddings) * norm(p.embeddings))
+        # score = dot(embeddings, p.embeddings)/(norm(embeddings) * norm(p.embeddings))
+        np.linalg.norm(embeddings - p.embeddings, axis=1)
         if score > best_score:
             index = i
             best_score = score
