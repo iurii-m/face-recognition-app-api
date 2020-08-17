@@ -33,8 +33,7 @@ def search_person():
     found = False
     for i, p in enumerate(people):
         found = True
-        # score = dot(embeddings, p.embeddings)/(norm(embeddings) * norm(p.embeddings))
-        score = np.linalg.norm(np.array(embeddings) - np.array(p.embeddings), axis=0)
+        score = dot(embeddings, p.embeddings)/(norm(embeddings) * norm(p.embeddings))
         if score > best_score:
             index = i
             best_score = score
