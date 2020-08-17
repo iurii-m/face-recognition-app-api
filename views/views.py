@@ -1,7 +1,6 @@
 from flask import json, Response, Blueprint, request
-# from numpy import dot
-# from numpy.linalg import norm
-import numpy as np
+from numpy import dot
+from numpy.linalg import norm
 
 from models.models import PersonSchema, PersonModel
 
